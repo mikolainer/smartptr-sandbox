@@ -1,4 +1,6 @@
 #include "pch.h"
+#include <chrono>
+#include <thread>
 #include "Data.h"
 
 Data::Data(std::string str)
@@ -19,7 +21,10 @@ DataPointer Data::lock_data()
 
 void Data::do_something()
 {
-	std::cout << m_text.data() << " does something" << std::endl;
+	std::cout << m_text.data() << " start to do something" << std::endl;
+	std::chrono::milliseconds timespan(1000);
+	std::this_thread::sleep_for(timespan);
+	std::cout << m_text.data() << " finish to do something" << std::endl;
 }
 
 const std::string & Data::str()
